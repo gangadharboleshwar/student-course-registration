@@ -1,0 +1,82 @@
+<!--
+including header content which is common for all pages
+-->
+<%- include ../layouts/header.ejs %>	
+		
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>
+
+<form action="/users/edit/<%= id %>" method="post" name="form1">
+	<table class="w3-table-all" >
+		<tr> 
+			<td>Name</td>
+			<td><input type="text" name="name" id="name" value="<%= name %>" /></td>
+			
+		</tr>
+		<tr> 
+			<td>USN</td>
+			<td><input type="text" name="usn" id="usn" value="<%= usn %>" /></td>
+			<td></td></tr>
+		<tr> 
+			<td>Age</td>
+			<td><input type="number" name="age" id="age" value="<%= age %>" /></td>
+		</tr>
+
+		<tr> 
+			<td>Email</td>
+			<td><input type="mail" name="email" id="email" value="<%= email %>" /></td>
+		</tr>
+		<tr> 
+			<td>Department</td>
+			<td><select name="department">
+				<option value="MCA">MCA</option>
+				<option value="MBA">MBA</option>
+				<option value="BE-MECHANICAL">BE-MECHANICAL</option>
+				<option value="BE-CIVIL">BE-CIVIL</option>
+				<option value="BE-E&C">BE-E&C</option>
+				<option value="BE-E&E">BE-E&E</option>
+
+			  </select></td>
+		</tr>
+
+		<tr> 
+			<td>Semester</td>
+			
+
+			<td><select name="semester">
+				<option value="1st sem">1<sup>st</sup>semester</option>
+				<option value="2nd sem">2<sup>nd</sup>semester</option>
+				<option value="3rd sem">3<sup>rd</sup>semester</option>
+				<option value="4th sem">4<sup>th</sup>semester</option>
+				<option value="5th sem">5<sup>th</sup>semester</option>
+				<option value="6th sem">6<sup>th</sup>semester</option>
+
+			  </select></td>
+		</tr>
+		<tr> 
+			<td>Course</td>
+			<td><input type="checkbox" name="course" value="Machine Learning">ML
+				<input type="checkbox" name="course" value="MEAN Stack">MEAN Stack
+				<input type="checkbox" name="course" value="Big Data">BIG Data
+				<input type="checkbox" name="course" value="Mobile App Development">MAD
+				<input type="checkbox" name="course" value="Advance JAVA">Advance JAVA
+				
+			</td>
+		</tr>
+		<tr> 
+			<td></td>
+			<td><input type="submit" name="Submit" value="Edit" /></td>
+		</tr>
+	</table>
+	<input type="hidden" name="_method" value="PUT" />
+</form>
+
+<!--
+including footer content which is common for all pages
+-->
+<%- include ../layouts/footer.ejs %>

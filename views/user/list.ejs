@@ -1,0 +1,63 @@
+<!--
+including header content which is common for all pages
+-->
+<%- include ../layouts/header.ejs %>
+
+<% if (messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+<% if (messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>	
+
+<table class="w3-table-all">
+
+	<tr style='text-align:left; background-color:#CCC'>
+		<th>Name</th><th>&nbsp;&nbsp;</th>
+		<th>USN</th><th>&nbsp;&nbsp;</th>
+		<th>Age</th><th>&nbsp;&nbsp;</th>
+		<th>Email</th><th>&nbsp;&nbsp;</th>
+		<th>Department</th><th>&nbsp;&nbsp;</th>
+		<th>Semester</th><th>&nbsp;&nbsp;</th>
+		<th>Course</th><th>&nbsp;&nbsp;</th>
+		<th>Action</th><th>&nbsp;&nbsp;</th>
+	</tr>
+	
+	<!--
+		Using FOREACH LOOP for the users array
+		
+		myArray.forEach(function(el, index) {
+			// el - current element, i - index
+		});
+	-->
+	<% if (data) { %>
+	<% data.forEach(function(user){ %>
+		<tr>
+			<td><%= user.name %></td>
+			<td></td>
+			<td><%= user.usn %></td><td></td>
+			<td><%= user.age %></td><td></td>
+			<td><%= user.email %></td><td></td>
+			<td><%= user.department %></td><td></td>
+			<td><%= user.semester %></td><td></td>
+			<td><%= user.course %></td><td></td>
+			<td>
+				<div style="float:left">
+					<a href='/users/edit/<%= user._id %>'>Edit</a> &nbsp;							
+					<form method="post" action="/users/delete/<%= user._id %>" style="float:right">
+						<input type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')" />
+						<input type="hidden" name="_method" value="DELETE" />
+					</form>
+				</div>
+			</td>
+		</tr>
+	<% }) %>
+	<% } %>
+
+</table>
+
+<!--
+including footer content which is common for all pages
+-->
+<%- include ../layouts/footer.ejs %>
